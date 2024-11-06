@@ -1,0 +1,24 @@
+.btn {
+  text-transform: none;
+  font-size: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  background-color: #fff;
+  color: rgb(56, 116, 203);
+
+  border: 1px solid rgb(56, 116, 203);
+  border-radius: 27px;
+
+  &:hover {
+    background-color: rgb(56, 116, 203);
+    color: #fff;
+    transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out,
+      color 0.4s ease-in-out;
+  }
+}
+
+.input {
+  width: 20%;
+  border-radius: 27px;
+}
