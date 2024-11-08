@@ -21,11 +21,16 @@ export default function SignIn() {
       gap={2}
     >
       <Typography variant="h4">Вход</Typography>
-      <OutlinedInput className={styles.input} label="Username" />
+      <OutlinedInput
+        className={styles.input}
+        label="Username"
+        sx={{ width: { xs: "80%", sm: "20%" } }}
+      />
       <OutlinedInput
         className={styles.input}
         label="Password"
         type="password"
+        sx={{ width: { xs: "80%", sm: "20%" } }}
       />
 
       <Grid2 container gap={2} alignItems={"center"}>

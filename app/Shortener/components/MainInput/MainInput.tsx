@@ -8,6 +8,7 @@ export function MainInput() {
         <OutlinedInput
           className={styles.input}
           placeholder="Введите ссылку для сокращения"
+          sx={{ width: { xs: "80%", sm: "50%" } }}
         />
       </Grid2>
 
