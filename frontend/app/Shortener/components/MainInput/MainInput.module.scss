@@ -1,0 +1,25 @@
+.btn {
+  text-transform: none;
+  font-size: 20px;
+
+  background-color: #fff;
+  color: rgb(56, 116, 203);
+
+  border: 1px solid rgb(56, 116, 203);
+  border-radius: 27px;
+
+  &:hover {
+    background-color: rgb(56, 116, 203);
+    color: #fff;
+    transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out,
+      color 0.4s ease-in-out;
+  }
+}
+
+.input {
+  border-radius: 27px;
+
+  &:focus {
+    border: 1px solid rgb(56, 116, 203);
+  }
+}
