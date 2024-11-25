@@ -1,0 +1,26 @@
+services:
+  backend:
+    build: backend
+    ports:
+      - 8080:8080
+    environment:
+      - POSTGRES_DB=db_link_shortener
+      - POSTGRES_USER=link_shortener
+      - POSTGRES_PASSWORD=1234
+    networks:
+      - spring-postgres
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - spring-postgres
+    environment:
+      - POSTGRES_DB=db_link_shortener
+      - POSTGRES_USER=link_shortener
+      - POSTGRES_PASSWORD=1234
+volumes:
+  db-data:
+networks:
+  spring-postgres:
