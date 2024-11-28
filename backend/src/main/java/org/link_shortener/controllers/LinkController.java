@@ -9,11 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.util.UrlUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 
@@ -28,17 +26,16 @@ public class LinkController {
         if (!UrlUtils.isValidRedirectUrl(linkRequest.getLink())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect link");
         }
-        return ResponseEntity.ok(linkService.createShortLink(linkRequest, user.getName()));
+        return ResponseEntity.ok(linkService.createShortLink(linkRequest, user != null ? user.getName() : null));
     }
 
-    @GetMapping("/redirect")
-    public RedirectView redirectToUrl(@RequestBody RedirectLinkDto redirectLinkDto) {
+    @PostMapping("/redirect")
+    public ResponseEntity<RedirectLinkDto> redirectToUrl(@RequestBody RedirectLinkDto redirectLinkDto) {
         if (redirectLinkDto.getLink() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect link");
         }
         try {
-            RedirectView redirectView = new RedirectView(linkService.redirect(redirectLinkDto.getLink()));
-            return redirectView;
+            return ResponseEntity.ok(linkService.redirect(redirectLinkDto.getLink()));
         } catch (IncorrectLinkException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
