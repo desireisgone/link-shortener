@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -17,8 +18,11 @@ public class Link {
     @Column(nullable = false)
     private String link;
 
-    @Column(nullable = false)
-    private String shortLink;
+    @Column(nullable = false, unique = true)
+    private UUID shortLink;
+
+    @Column()
+    private String linkName;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
