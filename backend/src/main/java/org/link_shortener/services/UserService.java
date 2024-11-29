@@ -7,6 +7,7 @@ import org.link_shortener.models.User;
 import org.link_shortener.repositories.RoleRepository;
 import org.link_shortener.repositories.UserRepository;
 import org.link_shortener.security.JwtCore;
+import org.link_shortener.security.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,11 @@ public class UserService {
         TokenDto token = new TokenDto();
         token.setToken(jwtCore.generateToken(authentication));
         return token;
+    }
+
+    public User getUserByEmail(String email) throws UsernameNotFoundException {
+        return userRepository.findUserByEmail(email).orElseThrow(() -> new UsernameNotFoundException(
+                    String.format("User %s not found", email)
+            ));
     }
 }
