@@ -1,6 +1,7 @@
 package org.link_shortener.services;
 
 import org.link_shortener.dtos.LinkDto;
+import org.link_shortener.dtos.RedirectLinkDto;
 import org.link_shortener.exceptions.IncorrectLinkException;
 import org.link_shortener.models.Link;
 import org.link_shortener.repositories.LinkRepository;
@@ -40,7 +41,7 @@ public class LinkService {
         return responseLink;
     }
 
-    public String redirect(String shortLink) {
+    public RedirectLinkDto redirect(String shortLink) {
         if (!shortLink.startsWith(frontend)) {
             throw new IncorrectLinkException(String.format("Incorrect link: %s", shortLink));
         }
@@ -48,6 +49,8 @@ public class LinkService {
         Link link = linkRepository.findByShortLink(UUID.fromString(idPart)).orElseThrow(() ->
                 new IncorrectLinkException(String.format("Original link not found: %s", shortLink))
         );
-        return link.getLink();
+        RedirectLinkDto rld = new RedirectLinkDto();
+        rld.setLink(link.getLink());
+        return rld;
     }
 }

@@ -1,0 +1,1 @@
+export { linkService } from "./Link";

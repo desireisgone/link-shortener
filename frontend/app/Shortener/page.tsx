@@ -1,6 +1,6 @@
 import { Grid2, Typography } from "@mui/material";
 import { MainInput } from "./components/MainInput";
-import { User } from "./components/User";
+import { LogOut } from "./components/LogOut";
 
 export default function ShortenerPage() {
   return (
@@ -15,10 +15,17 @@ export default function ShortenerPage() {
           Сокращатель ссылок
         </Typography>
 
-        <User />
+        <LogOut />
       </Grid2>
 
-      <MainInput />
+      <Grid2
+        container
+        alignItems={"center"}
+        justifyContent={"center"}
+        width={"100%"}
+      >
+        <MainInput />
+      </Grid2>
     </Grid2>
   );
 }
